@@ -27,4 +27,18 @@ export const add = (description) => {
     }
 }
 
+export const markAsDone = (todo) => {
+    return dispacth => {
+        axios.put(`${URL}/${todo._id}`, { ...todo, done: true })
+            .then(resp => dispacth(search()))
+    }
+}
+
+export const markAsPending = (todo) => {
+    return dispacth => {
+        axios.put(`${URL}/${todo._id}`, { ...todo, done: false })
+            .then(resp => dispacth(search()))
+    }
+}
+
 
