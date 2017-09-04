@@ -18,10 +18,7 @@ export const search = () => {
 export const add = (description) => {
     return dispacth => {
         axios.post(URL, { description })
-            .then(resp => dispacth({
-                type: 'TODO_ADDED',
-                payload: resp.data
-            })
+            .then(resp => dispacth(clear()))
             .then(resp => dispacth(search()))
         )
     }
@@ -48,4 +45,7 @@ export const remove = (todo) => {
     }
 }
 
+export const clear = () => {
+    return { type: 'TODO_CLEAR' }
+}
 
